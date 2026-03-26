@@ -1,6 +1,6 @@
 # Isaac ROS 2 Jazzy Multi-Service Workspace
 
-A Dockerized environment for **Isaac ROS 2 (Jazzy)** featuring a sensor suite (RealSense/Ouster) and a Vision-Language Navigation (VLN) service.
+A Dockerized environment for **Isaac ROS 2 (Jazzy)** featuring a sample test for sensor  (RealSense/Ouster) and a Vision-Language Navigation (VLN) service.
 
 ## 📂 Project Structure
 
