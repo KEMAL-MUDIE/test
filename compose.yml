@@ -1,0 +1,36 @@
+services:
+  my_service:
+    build:
+      context: .
+      dockerfile: my_service/Dockerfile
+    image: my_sensors_service:latest
+    network_mode: "host"
+    ipc: "host"
+    pid: "host"
+    privileged: true
+    # Add hardware access for RealSense (USB)
+    volumes:
+      - /dev:/dev
+      - ./my_service/workspace:/home/user/my_service/workspace
+    environment:
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      - ROS_DOMAIN_ID=0
+    entrypoint: ["/bin/bash", "-lc"]
+    command: ["tail -f /dev/null"]
+  vln_service:
+    build:
+      context: .
+      dockerfile: vln_service/Dockerfile
+    image: vln_service:latest
+    network_mode: "host"
+    ipc: "host"
+    pid: "host"
+    privileged: true
+    volumes:
+      - /dev:/dev
+      - ./vln_service/workspace:/home/user/vln_service/workspace
+    environment:
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      - ROS_DOMAIN_ID=0
+    entrypoint: ["/bin/bash", "-lc"]
+    command: ["tail -f /dev/null"]
