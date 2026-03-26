@@ -1,4 +1,4 @@
-# Isaac ROS 2 Jazzy Multi-Service Workspace
+# Sample of Isaac ROS 2 Jazzy Multi-Service Workspace  docker conatiner
 
 A Dockerized environment for **Isaac ROS 2 (Jazzy)** featuring a sample test for sensor  (RealSense/Ouster) and a Vision-Language Navigation (VLN) service.
 
