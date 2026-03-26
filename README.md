@@ -2,6 +2,13 @@
 
 A Dockerized environment for **Isaac ROS 2 (Jazzy)** featuring a sample test for sensor  (RealSense/Ouster) and a Vision-Language Navigation (VLN) service.
 
+
+For your Docker file get isaac ros docker base image tag  for your hardware from 
+
+https://catalog.ngc.nvidia.com/orgs/nvidia/teams/isaac/containers/ros/tags?version=isaac_ros_054e16b5c3a328b621af47d26009c348-arm64-fastos
+
+
+
 ## 📂 Project Structure
 
 ```text
