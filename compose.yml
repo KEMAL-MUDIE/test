@@ -8,15 +8,19 @@ services:
     ipc: "host"
     pid: "host"
     privileged: true
-    # Add hardware access for RealSense (USB)
+    user: "1000:1000"
     volumes:
       - /dev:/dev
-      - ./my_service/workspace:/home/user/my_service/workspace
+      - ./my_service/workspace:/home/rbq/my_service/workspace
+      - /home/rbq/fastdds.xml:/etc/fastdds.xml:ro
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-      - ROS_DOMAIN_ID=0
+      - ROS_DOMAIN_ID=42
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/etc/fastdds.xml
+      - FASTDDS_DEFAULT_PROFILES_FILE=/etc/fastdds.xml
     entrypoint: ["/bin/bash", "-lc"]
     command: ["tail -f /dev/null"]
+
   vln_service:
     build:
       context: .
@@ -26,11 +30,15 @@ services:
     ipc: "host"
     pid: "host"
     privileged: true
+    user: "1000:1000"
     volumes:
       - /dev:/dev
-      - ./vln_service/workspace:/home/user/vln_service/workspace
+      - ./vln_service/workspace:/home/rbq/vln_service/workspace
+      - /home/rbq/fastdds.xml:/etc/fastdds.xml:ro
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-      - ROS_DOMAIN_ID=0
+      - ROS_DOMAIN_ID=42
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/etc/fastdds.xml
+      - FASTDDS_DEFAULT_PROFILES_FILE=/etc/fastdds.xml
     entrypoint: ["/bin/bash", "-lc"]
     command: ["tail -f /dev/null"]

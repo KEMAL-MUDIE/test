@@ -1,28 +1,26 @@
-# Vision-Language Navigation (VLN) Service Dockerfile
-FROM ubuntu:22.04
+# Vision-Language Navigation service on top of the Ubuntu 24 / ROS Jazzy base.
+FROM ros_jazzy_base:latest
 
-# Set non-interactive mode for apt
+ARG ROS_DISTRO=jazzy
+ENV ROS_DISTRO=${ROS_DISTRO}
 ENV DEBIAN_FRONTEND=noninteractive
+USER root
 
-# Install basic dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        python3 python3-pip python3-venv \
-        git wget curl \
-        build-essential \
-        ca-certificates \
-        libglib2.0-0 \
-        libsm6 \
-        libxext6 \
-        libxrender-dev \
-        && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      python3-venv \
+      libglib2.0-0 \
+      libsm6 \
+      libxext6 \
+      libxrender-dev \
+      libgl1 \
+    && rm -rf /var/lib/apt/lists/*
 
-# (Optional) Install additional vision-language navigation dependencies here
-# RUN pip3 install torch torchvision transformers opencv-python
+# (Optional) Add VLN python deps here, e.g.:
+# RUN pip3 install --no-cache-dir --break-system-packages \
+#       torch torchvision transformers opencv-python
 
-# Create workspace directory
-RUN mkdir -p /home/user/vln_service/workspace
-WORKDIR /home/user/vln_service/workspace
+RUN mkdir -p /home/rbq/vln_service/workspace \
+ && chown -R rbq:rbq /home/rbq/vln_service
 
-# Set default command
-CMD ["/bin/bash"]
+USER rbq
+WORKDIR /home/rbq/vln_service/workspace

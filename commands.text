@@ -1,0 +1,7 @@
+Quick commands going forward:
+  sudo docker compose exec my_service bash      # interactive shell in sensor
+  svc
+  sudo docker compose exec vln_service bash     # interactive shell in vln svc
+  sudo docker compose down                      # stop everything
+  sudo ./build.sh                               # rebuild base + services
+
